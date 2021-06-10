@@ -3,7 +3,7 @@
 namespace Modules\PaymentMethodeModule\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Country;
+use Modules\CoreModule\Entities\Country;
 use Illuminate\Http\Request;
 use App\Traits\ClearsResponseCache;
 use Modules\PaymentMethodeModule\Entities\PaymentMethod;
