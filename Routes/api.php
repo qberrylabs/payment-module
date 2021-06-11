@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Modules\PaymentMethodeModule\Http\Controllers\API\PaymentMethodController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/paymentmethodemodule', function (Request $request) {
-    return $request->user();
+
+Route::group(['middleware' => ['api','auth','isVerified','isEmailVerified','IsProfileCompleted']], function ($router) {
+    //Start Payment Method API
+    Route::get('get-payment-methods', [PaymentMethodController::class,'getUserPaymentMethod']);
+    Route::get('get-payment-methods-by-country/{country?}',[PaymentMethodController::class,'getPaymentMethodByCountry']);
+    //End Payment Method API
 });
+
